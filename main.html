@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #draggable { width: 1500px; height: 1500px; padding: 0.5em; border:3px solid}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        window.onload = init;
+
+        let root;
+        let content;
+        let zoom = 1.0;
+        let translateY = 0;
+        let translateX = 0;
+        let middleMouseDown = false;
+        $(function () {
+            $("#draggable").draggable();
+        });
+        function init(){
+            content = document.getElementById("draggable");
+            root = document.getElementById("root");
+
+            root.addEventListener("wheel", (event) => {
+                zoom += event.wheelDelta / 1000;
+                if (zoom > 2.0) { zoom = 2.0 }
+                else if (zoom < 0.5) { zoom = 0.5 }
+                console.log(zoom);
+
+                transform();
+            })
+        }
+        
+        function transform() {
+            content.style.transform = `scale(${zoom}, ${zoom}) translate(${translateX}px, ${translateY}px)`
+        }
+    </script>
+
+</head>
+<body id="root" style="width: 980px; margin: 0 auto">
+    <div id="draggable" style="position:absolute">
+        
+    </div>
+    <div style="position: absolute; top:0">test</div>
+</body>
+</html>
