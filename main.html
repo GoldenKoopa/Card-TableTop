@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        #draggable { position: absolute; width: 150px; height: 150px; padding: 0.5em; border:3px solid}
-
+        .a { position: absolute; width: 450px; height: 450px; padding: 0.5em; border:3px solid}
+        .b {position: absolute; width: 250px; height: 250px; padding: 0.5em; border:3px solid blue}
         body {height: 100vh; margin: 0}
+        .draggable {
+            position: absolute;
+        }
     </style>
     <script defer src="script.js"></script>
 
 
 </head>
-<body id="root">
-    <div id="draggable">
-        
+<body>
+    <div class="zoomable" id="bkg">
+        <img draggable="false" class="draggable" src="svg/1B.svg"></image>
+        <div class="b draggable"></div>
     </div>
 </body>
 </html>
