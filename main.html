@@ -8,19 +8,22 @@
     <style>
         .a { position: absolute; width: 450px; height: 450px; padding: 0.5em; border:3px solid}
         .b {position: absolute; width: 250px; height: 250px; padding: 0.5em; border:3px solid blue}
-        body {height: 100vh; margin: 0}
+        body {height: 100vh; margin: 0; background-color:#222; background-image: url('png/back.png'); user-select: none}
         .draggable {
             position: absolute;
         }
+        img {user-select: none; -webkit-user-drag: none}
+        #hand {background-color: red; width: 100vw; height: 15vh; position:absolute; top: 85vh}
     </style>
     <script defer src="script.js"></script>
 
 
 </head>
-<body>
+<body draggable="false">
     <div class="zoomable" id="bkg">
         <img draggable="false" class="draggable" src="svg/1B.svg"></image>
         <div class="b draggable"></div>
     </div>
+    <div class="static" id="hand"></div>
 </body>
 </html>

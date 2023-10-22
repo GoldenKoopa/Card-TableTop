@@ -49,7 +49,7 @@ function mouseMove(event) {
     }
 }
 
-
+document.body.style.backgroundPosition = 2 + 'px ' + 6 + 'px';
 draggable_surfaces = document.getElementsByClassName('draggable');
 function render(dx, dy){
     if (renderVars.mouseTarget == document.body || renderVars.mouseTarget == document.getElementById('bkg')) {
@@ -57,10 +57,12 @@ function render(dx, dy){
             elem.style.left = (+elem.style.left.slice(0, elem.style.left.length-2) + dx ) + 'px';
             elem.style.top = (+elem.style.top.slice(0, elem.style.top.length-2) + dy) + 'px'
         }
-    } else {
+        document.body.style.backgroundPosition = (parseFloat(document.body.style.backgroundPosition.split(' ')[0].slice(0, document.body.style.backgroundPosition[0].length-3)) + dx / 4) + "px " + (parseFloat(document.body.style.backgroundPosition.split(' ')[1].slice(0, document.body.style.backgroundPosition[1].length-2)) + dy / 4) + "px"
+    } else if (Object.values(draggable_surfaces).indexOf(renderVars.mouseTarget) > -1) {
         renderVars.mouseTarget.style.left = (+renderVars.mouseTarget.style.left.slice(0, renderVars.mouseTarget.style.left.length-2) + dx * (1/zoom_factor) ) + 'px';
         renderVars.mouseTarget.style.top = (+renderVars.mouseTarget.style.top.slice(0, renderVars.mouseTarget.style.top.length-2) + dy * (1/zoom_factor)) + 'px'
     }
+
     renderVars.lastRender = Date.now();
 }
 
@@ -69,12 +71,11 @@ function zoom(e){
     let delta = 1 + e.wheelDelta /1000;
     zoom_factor += e.wheelDelta/1000;
     
-    if (zoom_factor > 2.0) { zoom_factor = 2.0 }
+    if (zoom_factor > 5.0) { zoom_factor = 5.0 }
     else if (zoom_factor < 0.5) { zoom_factor = 0.5 }
     for (elem of contents) {
         elem.style.transform = `scale(${zoom_factor}, ${zoom_factor})`
     }
-    
 }
 
 document.body.addEventListener('wheel', zoom)
