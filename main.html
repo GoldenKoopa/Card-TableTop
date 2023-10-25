@@ -14,6 +14,10 @@
         }
         img {user-select: none; -webkit-user-drag: none}
         #hand {background-color: red; width: 100vw; height: 15vh; position:absolute; top: 85vh}
+        #QC {content: url('svg/QC.svg')}
+        .hidden {content: url('svg/1B.svg')!important}
+        .cardInHand {display: inline-block; vertical-align: top}
+        #rmenu {position: absolute; width: 100px; height: 100px; background-color: blue; display: none}
     </style>
     <script defer src="script.js"></script>
 
@@ -21,9 +25,10 @@
 </head>
 <body draggable="false">
     <div class="zoomable" id="bkg">
-        <img draggable="false" class="draggable" src="svg/1B.svg"></image>
-        <div class="b draggable"></div>
+        <img draggable="false" class="draggable card" src="svg/1B.svg"></image>
+        <div id="QC" class="draggable card"></div>
     </div>
     <div class="static" id="hand"></div>
+    <div id="rmenu"></div>
 </body>
 </html>
